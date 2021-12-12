@@ -1,0 +1,27 @@
+{
+  "name": "react-native-wheel-date-picker",
+  "version": "1.0.0",
+  "description": "A Simple React Native Date Picker",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "react-native-snap-carousel": "3.9.1",
+    "moment": "2.29.1",
+    "moment-jalaali": "0.9.4",
+    "prop-types": "15.7.2"
+  },
+  "files": [
+    "src/index.js",
+    "src/Utils.js",
+    "src/CarouselWrapper.js"
+  ],
+  "author": "Masoud Lotfi",
+  "license": "ISC",
+  "devDependencies": {
+    "react": "17.0.2",
+    "react-native": "0.66.4",
+    "react-native-snap-carousel": "3.9.1"
+  }
+}
