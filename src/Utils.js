@@ -24,15 +24,47 @@ export function getYears(fromYear, toYear, calendarType) {
     let years = [];
     let offset = toYear - fromYear;
     for (let i = 0; i < offset; i++) {
-        years.push((toYear - i).toString());
+        years.push((toYear - i));
     }
-    years.push(fromYear.toString());
+    years.push(fromYear);
 
     return years;
 }
 
 export function getMonths(calendarType, locale) {
     return monthNames[calendarType][locale];
+}
+
+export function getDays(count) {
+    let days = [];
+    for (let i = 1; i <= count; i++) {
+        days.push(i)
+    }
+    return days;
+}
+
+export function getDaysOfMonth(year, month, calendarType) {
+    if (calendarType === CALENDAR_TYPES.GREGORIAN) {
+        month = month + 1;
+        return new Date(year, month, 0).getDate();
+    } else {
+        return jMoment.jDaysInMonth(year, month)
+    }
+}
+
+export function getDefaultDate(defaultDate, calendarType) {
+    if (defaultDate) {
+        return defaultDate
+    } else {
+        switch (calendarType) {
+            case CALENDAR_TYPES.GREGORIAN: {
+                return {year: parseInt(jMoment().format('YYYY')), month: parseInt(jMoment().format('MM')), day: parseInt(jMoment().format('DD'))}
+            }
+            case CALENDAR_TYPES.JALAALI: {
+                return {year: parseInt(jMoment().format('jYYYY')), month: parseInt(jMoment().format('jMM')), day: parseInt(jMoment().format('jDD'))}
+            }
+        }
+    }
 }
 
 const monthNames = {

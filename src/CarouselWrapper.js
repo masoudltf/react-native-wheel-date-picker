@@ -18,8 +18,26 @@ export default class CarouselWrapper extends React.Component {
         this._carousel.snapToItem(index)
     }
 
-    getCurrentIndex() {
+    getCurrentIndex = () => {
         return this._carousel.currentIndex
+    }
+
+    getSelected = () => {
+        let {
+            data
+        } = this.state;
+
+        let currentIndex = this.getCurrentIndex();
+
+        if (parseInt(data[0]).toString() === 'NaN') {
+            return currentIndex + 1;
+        } else {
+            return data[currentIndex]
+        }
+    }
+
+    setData = (data) => {
+        this.setState({data})
     }
 
     _renderItem = ({item}) => {
@@ -40,14 +58,27 @@ export default class CarouselWrapper extends React.Component {
         this._carousel.snapToItem(data.indexOf(item))
     }
 
+    _getSelectedItemIndex = (selected) => {
+        let {
+            data
+        } = this.state;
+
+        if (parseInt(data[0]).toString() === 'NaN') {
+            return parseInt(selected) - 1;
+        } else {
+            return data.indexOf(selected)
+        }
+    }
+
     render() {
         let {data} = this.state;
-        let {onSnapToItem} = this.props;
+        let {onSnapToItem, selected} = this.props;
 
         return (
             <Carousel ref={ref => this._carousel = ref}
                       onSnapToItem={onSnapToItem}
                       data={data}
+                      firstItem={this._getSelectedItemIndex(selected)}
                       containerCustomStyle={styles.sliderContainer}
                       itemHeight={ITEM_HEIGHT}
                       sliderHeight={SLIDER_HEIGHT}

@@ -19,14 +19,10 @@ class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <WheelDatePicker ref={ref => this._wheelDatePicker = ref}
-                                 // fromYear={1380}
-                                 // toYear={1400}
-                                 locale={'en'}
-                                 calendarType={'gregorian'}/>
+                <WheelDatePicker ref={ref => this._wheelDatePicker = ref}/>
                 <Button title={'Alert Date'}
                         onPress={() => {
-                            alert(this._wheelDatePicker.getSelectedDate())
+                            console.log(this._wheelDatePicker.getSelectedDate())
                         }} />
             </View>
         );
