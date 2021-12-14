@@ -1,9 +1,7 @@
 import React from "react";
 import Carousel from "react-native-snap-carousel";
 import {StyleSheet, Text, TouchableOpacity} from "react-native";
-
-const SLIDER_HEIGHT = 150;
-const ITEM_HEIGHT = 50;
+import {localizeNumbers} from './Utils';
 
 export default class CarouselWrapper extends React.Component {
 
@@ -15,7 +13,7 @@ export default class CarouselWrapper extends React.Component {
     }
 
     snapToItem = (index) => {
-        this._carousel.snapToItem(index)
+        this._carousel.snapToItem(index);
     }
 
     getCurrentIndex = () => {
@@ -36,16 +34,21 @@ export default class CarouselWrapper extends React.Component {
         }
     }
 
-    setData = (data) => {
-        this.setState({data})
+    setData = (data, callback) => {
+        this.setState({data}, callback)
     }
 
     _renderItem = ({item}) => {
+        let {
+            locale,
+            textStyles
+        } = this.props;
+
         return (
             <TouchableOpacity activeOpacity={1}
                               onPress={() => this._onItemPress(item)}
                               style={styles.slide}>
-                <Text style={styles.wheelText}>{item}</Text>
+                <Text style={[styles.wheelText, textStyles]}>{localizeNumbers(item.toString(), locale)}</Text>
             </TouchableOpacity>
         )
     }
@@ -72,7 +75,7 @@ export default class CarouselWrapper extends React.Component {
 
     render() {
         let {data} = this.state;
-        let {onSnapToItem, selected} = this.props;
+        let {onSnapToItem, selected, itemHeight, sliderHeight} = this.props;
 
         return (
             <Carousel ref={ref => this._carousel = ref}
@@ -80,14 +83,15 @@ export default class CarouselWrapper extends React.Component {
                       data={data}
                       firstItem={this._getSelectedItemIndex(selected)}
                       containerCustomStyle={styles.sliderContainer}
-                      itemHeight={ITEM_HEIGHT}
-                      sliderHeight={SLIDER_HEIGHT}
+                      itemHeight={itemHeight}
+                      sliderHeight={sliderHeight}
                       vertical={true}
                       useScrollView={true}
                       enableMomentum={true}
                       removeClippedSubviews={false}
                       inactiveSlideShift={0}
-                      inactiveSlideScale={0.8}
+                      inactiveSlideScale={0.7}
+                      inactiveSlideOpacity={0.5}
                       renderItem={this._renderItem} />
         );
     }
@@ -105,6 +109,8 @@ const styles = StyleSheet.create({
     },
 
     wheelText: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: 'black'
     }
 })

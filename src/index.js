@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, View} from "react-native";
+import {StyleSheet, View, ViewPropTypes} from "react-native";
 import CarouselWrapper from './CarouselWrapper';
 import PropsType from "prop-types";
 import {getYears, getMonths, getDays, getDaysOfMonth, getDefaultDate, CALENDAR_TYPES, LOCALES, FIELDS} from './Utils';
@@ -51,18 +51,22 @@ export class WheelDatePicker extends React.Component {
 
     _onYearOrMonthChange = (index) => {
         let {
-            years
+            years,
+            months
         } = this;
 
         let {calendarType} = this.props;
 
-        let year = parseInt(years[index]);
+        let year = parseInt(years[this._yearsCarousel.getCurrentIndex()]);
         let month = parseInt(this._monthsCarousel.getCurrentIndex());
-        this._daysCarousel.setData(getDays(getDaysOfMonth(year, month, calendarType)));
+        this._daysCarousel.setData(getDays(getDaysOfMonth(year, month, calendarType)), this._onDateChange);
     }
 
-    _onDayChange = (index) => {
-        //change month if days overflow
+    _onDateChange = () => {
+        let {onDateChange} = this.props;
+        if (onDateChange) {
+            onDateChange(this.getSelectedDate())
+        }
     }
 
     render() {
@@ -73,19 +77,33 @@ export class WheelDatePicker extends React.Component {
             defaultDate
         } = this;
 
+        let {locale, rowHeight, numberOfRows, textStyles} = this.props;
+
         return (
             <View style={styles.container}>
                 <CarouselWrapper ref={ref => this._yearsCarousel = ref}
                                  onSnapToItem={this._onYearOrMonthChange}
                                  selected={defaultDate.year}
+                                 locale={locale}
+                                 itemHeight={rowHeight}
+                                 sliderHeight={rowHeight * numberOfRows}
+                                 textStyles={textStyles}
                                  data={years}/>
                 <CarouselWrapper ref={ref => this._monthsCarousel = ref}
                                  onSnapToItem={this._onYearOrMonthChange}
                                  selected={defaultDate.month}
+                                 locale={locale}
+                                 itemHeight={rowHeight}
+                                 sliderHeight={rowHeight * numberOfRows}
+                                 textStyles={textStyles}
                                  data={months}/>
                 <CarouselWrapper ref={ref => this._daysCarousel = ref}
-                                 onSnapToItem={this._onDayChange}
+                                 onSnapToItem={this._onDateChange}
                                  selected={defaultDate.day}
+                                 locale={locale}
+                                 itemHeight={rowHeight}
+                                 sliderHeight={rowHeight * numberOfRows}
+                                 textStyles={textStyles}
                                  data={days}/>
             </View>
         );
@@ -95,9 +113,13 @@ export class WheelDatePicker extends React.Component {
 WheelDatePicker.propTypes = {
     fromYear: PropsType.number,
     toYear: PropsType.number,
+    defaultDate: PropsType.shape({year: PropsType.number, month: PropsType.number, day: PropsType.number}),
     calendarType: PropsType.oneOf(['gregorian', 'jalaali']),
     locale: PropsType.oneOf(['en', 'fa']),
-    defaultDate: PropsType.shape({year: PropsType.number, month: PropsType.number, day: PropsType.number})
+    rowHeight: PropsType.number,
+    numberOfRows: PropsType.number,
+    onDateChange: PropsType.func,
+    textStyles: PropsType.shape(ViewPropTypes.style)
 }
 
 WheelDatePicker.defaultProps = {
@@ -105,7 +127,11 @@ WheelDatePicker.defaultProps = {
     // toYear: '' calculated,
     // defaultDate: {} calculated,
     calendarType: CALENDAR_TYPES.GREGORIAN,
-    locale: LOCALES.EN
+    locale: LOCALES.EN,
+    rowHeight: 50,
+    numberOfRows: 3,
+    onDateChange: undefined,
+    textStyles: undefined
 }
 
 const styles = StyleSheet.create({

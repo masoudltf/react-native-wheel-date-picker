@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "react-native-snap-carousel": "3.9.1",
-    "moment": "2.29.1",
     "moment-jalaali": "0.9.4",
     "prop-types": "15.7.2"
   },
