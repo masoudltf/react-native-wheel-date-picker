@@ -6,11 +6,11 @@ The package is both **Android** and **iOS** compatible.
 
 ## Installation
 
-`$ yarn add react-native-wheel-date-picker`
+`$ yarn add @masoudltf/react-native-wheel-date-picker`
 
 or
 
-`$ npm install react-native-wheel-date-picker`
+`$ npm install @masoudltf/react-native-wheel-date-picker`
 
 This module used [**react-native-snap-carousel**](https://github.com/meliorence/react-native-snap-carousel) and [**moment-jalaali**](https://github.com/jalaali/moment-jalaali) and linking is not required.
 
