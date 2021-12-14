@@ -1,7 +1,5 @@
 # React Native Wheel Date Picker 🗓️
 
-[comment]: <> ([![NPM Version]&#40;https://img.shields.io/npm/v/react-native-general-calendars.svg?style=flat&#41;]&#40;https://www.npmjs.com/package/react-native-general-calendars&#41;)
-
 This module provides a simple carousel date picker with support of gregorian and jalaali date. 
 
 The package is both **Android** and **iOS** compatible.
@@ -57,8 +55,3 @@ All properties are optional.
 | ------ | ----------- |----------- | ----------- |
 | getSelectedDate | Object | `{year: '2021', month: '12', day: '15'}` | Returns selected date in gregorian |
 
-[comment]: <> (<kbd>)
-
-[comment]: <> (  <img height=50 src="https://github.com/rghorbani/react-native-general-calendars/blob/master/demo/marking2.png?raw=true">)
-
-[comment]: <> (</kbd>)
