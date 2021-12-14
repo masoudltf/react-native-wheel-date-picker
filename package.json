@@ -1,5 +1,5 @@
 {
-  "name": "react-native-wheel-date-picker",
+  "name": "@masoudltf/react-native-wheel-date-picker",
   "version": "1.0.0",
   "description": "A Simple React Native Date Picker",
   "main": "src/index.js",
@@ -11,21 +11,35 @@
     "moment-jalaali": "0.9.4",
     "prop-types": "15.7.2"
   },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/masoudltf/react-native-wheel-date-picker.git"
   },
-  "repository": "https://github.com/masoudltf/react-native-wheel-date-picker",
   "files": [
     "src/index.js",
     "src/Utils.js",
     "src/CarouselWrapper.js"
   ],
-  "author": "Masoud Lotfi",
-  "license": "ISC",
-  "keywords": ["react", "react-native", "date-picker", "react-native-wheel-date-picker", "wheel-picker", "mobile", "picker", "ios", "android"],
+  "keywords": [
+    "react",
+    "react-native",
+    "date-picker",
+    "react-native-wheel-date-picker",
+    "wheel-picker",
+    "mobile",
+    "picker",
+    "ios",
+    "android"
+  ],
   "devDependencies": {
     "react": "17.0.2",
     "react-native": "0.66.4",
     "react-native-snap-carousel": "3.9.1"
-  }
+  },
+  "author": "Masoud Lotfi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/masoudltf/react-native-wheel-date-picker/issues"
+  },
+  "homepage": "https://github.com/masoudltf/react-native-wheel-date-picker#readme"
 }
