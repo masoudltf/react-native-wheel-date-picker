@@ -3,6 +3,7 @@
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 [![npm](https://img.shields.io/badge/npm-1.0.0-brightgreen)](https://github.com/masoudltf/react-native-wheel-date-picker)
 
+<img src="https://i.imgur.com/8dhFLNP.png" alt="example" width="300"/>
 
 This module provides a simple carousel date picker with support of gregorian and jalaali date. 
 
