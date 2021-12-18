@@ -14,7 +14,7 @@ import {
     Text
 } from 'react-native';
 
-import {WheelDatePicker} from "react-native-wheel-date-picker";
+import {WheelDatePicker} from "@masoudltf/react-native-wheel-date-picker";
 
 class App extends React.Component {
     render() {
