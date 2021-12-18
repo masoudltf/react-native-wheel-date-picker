@@ -1,6 +1,6 @@
 {
   "name": "@masoudltf/react-native-wheel-date-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Simple React Native Date Picker",
   "main": "src/index.js",
   "scripts": {
